@@ -98,6 +98,7 @@ while True:
         for landmark in landmarks:
             x = int(landmark.x * width)
             y = int(landmark.y * height)
+            # print(x,y)
             points.append((x, y))
             # Draw landmark point
             cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
@@ -109,6 +110,7 @@ while True:
         index_tip = points[8]
         # Calculate distance between two fingertips
         pinch_distance = math.dist(thumb_tip, index_tip)
+        print(pinch_distance)
         # Calculate palm width
         palm_width = math.dist(points[5], points[17])
         # Detect pinch gesture
@@ -116,7 +118,7 @@ while True:
         # Trigger click only once per pinch
         if is_pinching and not previous_pinching:
             pyautogui.click()
-            print("LEFT CLICK")
+            # print("LEFT CLICK")
         previous_pinching = is_pinching
         # Visual feedback
         cv2.line(frame, thumb_tip, index_tip, (0, 255, 255), 3)
@@ -150,7 +152,7 @@ while True:
         prev_x = None
         prev_y = None
         previous_pinching = False
-        cv2.putText(
+    cv2.putText(
             img=frame,  # Jis frame par likhna hai
             text="Air Mouse",  # Jo text dikhana hai
             org=(50, 50),  # Text ki position (X, Y coordinates)
@@ -159,7 +161,7 @@ while True:
             color=(0, 255, 0),  # Text ka color (BGR format: yahan Green hai)
             thickness=2,  # Text ki motai (boldness)
         )
-    cv2.imshow("Original", frame)
+    cv2.imshow("Air MOuse", frame)
     if not m:
         height, width, channel = frame.shape
         x = int(width / 4)
